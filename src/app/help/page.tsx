@@ -5,12 +5,12 @@ export const metadata: Metadata = { title: "How it works" };
 
 function Step({ n, title, href, children }: { n: number; title: string; href?: string; children: React.ReactNode }) {
   return (
-    <li className="flex gap-4 rounded-lg border border-gray-200 bg-white p-5">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-sm font-semibold text-white">{n}</span>
+    <li className="flex gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">{n}</span>
       <div className="space-y-2 text-sm text-gray-700">
         <h2 className="text-base font-semibold text-gray-900">
           {href ? (
-            <Link href={href} className="text-indigo-700 hover:underline">
+            <Link href={href} className="text-brand-600 hover:underline">
               {title}
             </Link>
           ) : (
@@ -31,7 +31,7 @@ export default function HelpPage() {
         <p className="text-gray-600">What happens automatically, what you do, and where to look when something seems off.</p>
       </div>
 
-      <section className="rounded-lg border border-indigo-200 bg-indigo-50 p-5 text-sm text-indigo-950">
+      <section className="rounded-lg border border-brand-200 bg-brand-50 p-5 text-sm text-brand-950">
         <h2 className="mb-2 font-semibold">Your routine (a few minutes each week)</h2>
         <ol className="ml-5 list-decimal space-y-1">
           <li>Open <Link href="/jobs/discover" className="underline">Discover</Link>: the automatic fetch has already found and scored new jobs.</li>
@@ -95,7 +95,7 @@ export default function HelpPage() {
         </Step>
       </ol>
 
-      <section className="rounded-lg border border-gray-200 bg-white p-5 text-sm text-gray-700">
+      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5 text-sm text-gray-700">
         <h2 className="mb-2 text-base font-semibold text-gray-900">When something looks wrong</h2>
         <ul className="ml-5 list-disc space-y-1">
           <li><b>No new jobs</b>: open Fetch runs. A red &ldquo;failed&rdquo; run shows the error; common causes are an expired API key or the monthly request limit.</li>

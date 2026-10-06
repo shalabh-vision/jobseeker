@@ -16,7 +16,7 @@ const STATUS_LABEL = { new: "Waiting for review", approved: "Approved and saved"
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5">
+    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
       <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -39,11 +39,11 @@ export default async function JobPage({ params }: PageProps<"/jobs/[id]">) {
 
   return (
     <div className="space-y-5">
-      <Link href={back} className="text-sm text-indigo-700 hover:underline">
+      <Link href={back} className="text-sm text-brand-600 hover:underline">
         ← Back
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-lg border border-gray-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
         <div className="flex gap-4">
           <ScoreBadge score={job.FitScore} />
           <div>
@@ -70,7 +70,7 @@ export default async function JobPage({ params }: PageProps<"/jobs/[id]">) {
         <div className="flex flex-col items-end gap-2">
           <JobDecisionButtons job={job} />
           {job.Status === "approved" && (
-            <Link href={`/jobs/${job.Id}/apply`} className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">
+            <Link href={`/jobs/${job.Id}/apply`} className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600">
               {job.AppliedOn ? "Application kit" : "Apply →"}
             </Link>
           )}
@@ -131,7 +131,7 @@ export default async function JobPage({ params }: PageProps<"/jobs/[id]">) {
             {applyOptions.length > 0
               ? applyOptions.map((o) => (
                   <li key={o.apply_link}>
-                    <a href={o.apply_link} target="_blank" rel="noreferrer" className="text-indigo-700 hover:underline">
+                    <a href={o.apply_link} target="_blank" rel="noreferrer" className="text-brand-600 hover:underline">
                       {o.publisher}
                     </a>
                     {o.is_direct && <span className="ml-1 text-xs text-green-700">(employer&apos;s own site)</span>}
@@ -139,14 +139,14 @@ export default async function JobPage({ params }: PageProps<"/jobs/[id]">) {
                 ))
               : job.ApplyLink && (
                   <li>
-                    <a href={job.ApplyLink} target="_blank" rel="noreferrer" className="text-indigo-700 hover:underline">
+                    <a href={job.ApplyLink} target="_blank" rel="noreferrer" className="text-brand-600 hover:underline">
                       {job.Publisher ?? "Apply link"}
                     </a>
                   </li>
                 )}
             {job.GoogleLink && (
               <li>
-                <a href={job.GoogleLink} target="_blank" rel="noreferrer" className="text-indigo-700 hover:underline">
+                <a href={job.GoogleLink} target="_blank" rel="noreferrer" className="text-brand-600 hover:underline">
                   View on Google Jobs
                 </a>
               </li>

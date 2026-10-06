@@ -11,7 +11,7 @@ const COLUMNS: ApplicationStatus[] = ["applied", "screening", "interview", "offe
 const COLUMN_TONE: Record<string, string> = {
   applied: "border-t-gray-400",
   screening: "border-t-sky-500",
-  interview: "border-t-indigo-600",
+  interview: "border-t-brand-600",
   offer: "border-t-green-600",
 };
 
@@ -22,7 +22,7 @@ function AppCard({ app }: { app: ApplicationSummary }) {
   const needsFollowUp = (app.Status === "applied" || app.Status === "screening") && quiet >= FOLLOW_UP_AFTER_DAYS;
   return (
     <li>
-      <Link href={`/applications/${app.Id}`} className="block rounded-md border border-gray-200 bg-white p-3 hover:border-indigo-300">
+      <Link href={`/applications/${app.Id}`} className="block rounded-md border border-gray-200 bg-white p-3 hover:border-brand-300">
         <p className="text-sm font-medium">{app.Title}</p>
         <p className="text-xs text-gray-600">
           {app.EmployerName} · {app.IsRemote ? "Remote" : (app.City ?? "")}
@@ -31,7 +31,7 @@ function AppCard({ app }: { app: ApplicationSummary }) {
           Applied {formatDate(app.AppliedOn)} ({daysSince(app.AppliedOn)} days ago) via {app.Method}
         </p>
         {app.NextInterviewAt && (
-          <p className="mt-1 rounded bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-800">
+          <p className="mt-1 rounded bg-brand-50 px-2 py-1 text-xs font-medium text-brand-800">
             {app.NextInterviewRound}: {formatDateTime(app.NextInterviewAt)}
           </p>
         )}

@@ -14,7 +14,7 @@ export function CityPicker({ cities, running, remaining }: { cities: PickableCit
       <ul className="flex flex-wrap gap-2">
         {cities.map((c) => (
           <li key={c.city}>
-            <label className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm has-[:checked]:border-indigo-500 has-[:checked]:bg-indigo-50">
+            <label className="flex cursor-pointer items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
               <input type="checkbox" name="city" value={c.city} />
               {c.city}
               <span className="text-xs text-gray-500">
@@ -27,7 +27,7 @@ export function CityPicker({ cities, running, remaining }: { cities: PickableCit
       </ul>
       <div className="flex flex-wrap items-center gap-3">
         <button
-          className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60"
+          className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:opacity-60"
           disabled={pending || running}
         >
           {running ? "Fetch running…" : pending ? "Starting…" : "Search ticked cities now"}

@@ -75,7 +75,7 @@ export default async function VacanciesPage({ params }: PageProps<"/vacancies/[s
         </ul>
       </HowItWorks>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white shadow-sm px-4 py-3 text-sm">
         <span className="text-gray-700">
           {running ? (
             <b>Fetch running now…</b>
@@ -88,7 +88,7 @@ export default async function VacanciesPage({ params }: PageProps<"/vacancies/[s
             "No fetch has run yet."
           )}
         </span>
-        <Link href="/settings/runs" className="font-medium text-indigo-700 hover:underline">
+        <Link href="/settings/runs" className="font-medium text-brand-600 hover:underline">
           Fetch runs →
         </Link>
       </div>
@@ -96,7 +96,7 @@ export default async function VacanciesPage({ params }: PageProps<"/vacancies/[s
       <VacancyBrowser stack={stack.slug} sections={sections} />
 
       {pickable.length > 0 && (
-        <section className="rounded-lg border border-gray-200 bg-white p-4">
+        <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
           <h2 className="mb-1 font-semibold text-gray-900">Search other cities</h2>
           <p className="mb-3 text-sm text-gray-600">
             Not part of the weekly fetch. Tick the cities to search now; their top recruiters appear above.

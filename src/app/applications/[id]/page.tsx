@@ -25,7 +25,7 @@ const OUTCOME_LABEL: Record<Interview["Outcome"], string> = {
   cancelled: "Cancelled",
 };
 const OUTCOME_TONE: Record<Interview["Outcome"], string> = {
-  pending: "bg-indigo-100 text-indigo-800",
+  pending: "bg-brand-100 text-brand-800",
   awaiting: "bg-amber-100 text-amber-800",
   passed: "bg-green-100 text-green-800",
   failed: "bg-red-100 text-red-800",
@@ -34,7 +34,7 @@ const OUTCOME_TONE: Record<Interview["Outcome"], string> = {
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5">
+    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -53,11 +53,11 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
 
   return (
     <div className="space-y-5">
-      <Link href="/applications" className="text-sm text-indigo-700 hover:underline">
+      <Link href="/applications" className="text-sm text-brand-600 hover:underline">
         ← Applications
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-lg border border-gray-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
         <div>
           <h1 className="text-xl font-semibold">{app.Title}</h1>
           <p className="text-gray-700">
@@ -69,17 +69,17 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
               <>
                 {" "}
                 ·{" "}
-                <a href={app.AppliedUrl} target="_blank" rel="noreferrer" className="text-indigo-700 hover:underline">
+                <a href={app.AppliedUrl} target="_blank" rel="noreferrer" className="text-brand-600 hover:underline">
                   where you applied ↗
                 </a>
               </>
             )}
           </p>
           <p className="mt-1 flex gap-3 text-sm">
-            <Link href={`/jobs/${app.JobPostingId}`} className="text-indigo-700 hover:underline">
+            <Link href={`/jobs/${app.JobPostingId}`} className="text-brand-600 hover:underline">
               Job description
             </Link>
-            <Link href={`/jobs/${app.JobPostingId}/apply`} className="text-indigo-700 hover:underline">
+            <Link href={`/jobs/${app.JobPostingId}/apply`} className="text-brand-600 hover:underline">
               Application kit (what you sent)
             </Link>
           </p>
@@ -113,7 +113,7 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
           <ol className="space-y-3 border-l-2 border-gray-200 pl-4">
             {app.events.map((e) => (
               <li key={e.Id} className="relative">
-                <span className="absolute -left-[1.4rem] top-1.5 h-2.5 w-2.5 rounded-full bg-indigo-500" />
+                <span className="absolute -left-[1.4rem] top-1.5 h-2.5 w-2.5 rounded-full bg-brand-500" />
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <p className="text-sm font-medium">
@@ -148,7 +148,7 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
                     </p>
                     <p className="text-gray-700">
                       {c.Email && (
-                        <a href={`mailto:${c.Email}`} className="text-indigo-700 hover:underline">
+                        <a href={`mailto:${c.Email}`} className="text-brand-600 hover:underline">
                           {c.Email}
                         </a>
                       )}
@@ -189,7 +189,7 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
                         <>
                           {" · "}
                           {/^https?:\/\//.test(iv.Location) ? (
-                            <a href={iv.Location} target="_blank" rel="noreferrer" className="text-indigo-700 hover:underline">
+                            <a href={iv.Location} target="_blank" rel="noreferrer" className="text-brand-600 hover:underline">
                               join link ↗
                             </a>
                           ) : (
@@ -226,7 +226,7 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
           </ul>
         )}
         <details open={app.interviews.length === 0 && app.Status === "interview"}>
-          <summary className="cursor-pointer text-sm font-medium text-indigo-700">Schedule an interview</summary>
+          <summary className="cursor-pointer text-sm font-medium text-brand-600">Schedule an interview</summary>
           <div className="mt-3">
             <ScheduleInterviewForm applicationId={app.Id} />
           </div>

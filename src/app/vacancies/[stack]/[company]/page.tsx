@@ -23,7 +23,7 @@ export default async function CompanyVacanciesPage({ params }: PageProps<"/vacan
 
   return (
     <div className="space-y-5">
-      <Link href={`/vacancies/${slug}`} className="text-sm text-indigo-700 hover:underline">
+      <Link href={`/vacancies/${slug}`} className="text-sm text-brand-600 hover:underline">
         ← All {stack.name} vacancies
       </Link>
       <div className="flex items-center gap-3">

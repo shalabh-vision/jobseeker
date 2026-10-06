@@ -39,7 +39,7 @@ export function DetailsForm({ details }: { details: ApplicantDetails }) {
         />
       </label>
       <div className="flex items-center gap-3">
-        <button disabled={pending} className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60">
+        <button disabled={pending} className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:opacity-60">
           Save details
         </button>
         {state.error && <span className="text-sm text-red-700">{state.error}</span>}

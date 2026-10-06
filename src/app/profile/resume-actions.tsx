@@ -28,7 +28,7 @@ export function ResumeActions({ hasResume }: { hasResume: boolean }) {
           accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           className="text-sm file:mr-2 file:rounded-md file:border-0 file:bg-gray-100 file:px-3 file:py-1.5 file:text-sm"
         />
-        <button type="submit" disabled={busy} className={`${button} bg-indigo-600 text-white hover:bg-indigo-700`}>
+        <button type="submit" disabled={busy} className={`${button} bg-accent-500 shadow-sm text-white hover:bg-accent-600`}>
           Upload &amp; analyse
         </button>
       </form>

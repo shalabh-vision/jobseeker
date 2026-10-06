@@ -19,7 +19,7 @@ const textarea = "w-full rounded-md border border-gray-300 px-3 py-2 text-sm lea
 
 function Card({ title, actions, children }: { title: string; actions?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5">
+    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
         {actions && <div className="flex gap-2">{actions}</div>}
@@ -59,11 +59,11 @@ export default async function ApplyPage({ params }: PageProps<"/jobs/[id]/apply"
 
   return (
     <div className="space-y-5">
-      <Link href="/jobs/saved" className="text-sm text-indigo-700 hover:underline">
+      <Link href="/jobs/saved" className="text-sm text-brand-600 hover:underline">
         ← Saved jobs
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-lg border border-gray-200 bg-white p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
         <div className="flex gap-4">
           <ScoreBadge score={job.FitScore} />
           <div>
@@ -71,7 +71,7 @@ export default async function ApplyPage({ params }: PageProps<"/jobs/[id]/apply"
             <p className="text-gray-700">
               {job.EmployerName} · {job.IsRemote ? "Remote" : (job.City ?? "location unclear")} · posted {formatDate(job.PostedAt)}
             </p>
-            <Link href={`/jobs/${job.Id}`} className="text-sm text-indigo-700 hover:underline">
+            <Link href={`/jobs/${job.Id}`} className="text-sm text-brand-600 hover:underline">
               Full job description and fit analysis
             </Link>
           </div>
@@ -239,7 +239,7 @@ export default async function ApplyPage({ params }: PageProps<"/jobs/[id]/apply"
           <ul className="mb-4 space-y-1 text-sm">
             {applyOptions.map((o) => (
               <li key={o.apply_link} className="flex flex-wrap items-center gap-2">
-                <a href={o.apply_link} target="_blank" rel="noreferrer" className="font-medium text-indigo-700 hover:underline">
+                <a href={o.apply_link} target="_blank" rel="noreferrer" className="font-medium text-brand-600 hover:underline">
                   Apply on {o.publisher} ↗
                 </a>
                 {o.is_direct && <span className="rounded bg-green-100 px-1.5 text-xs text-green-800">employer&apos;s own site</span>}
@@ -253,7 +253,7 @@ export default async function ApplyPage({ params }: PageProps<"/jobs/[id]/apply"
         {application ? (
           <p className="text-sm text-gray-700">
             Recorded as applied.{" "}
-            <Link href={`/applications/${application.Id}`} className="text-indigo-700 hover:underline">
+            <Link href={`/applications/${application.Id}`} className="text-brand-600 hover:underline">
               Track its status on the Applications page
             </Link>
             .

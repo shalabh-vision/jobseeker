@@ -15,14 +15,14 @@ function CompanyCard({ stack, company }: { stack: string; company: VacancyCompan
     <li>
       <Link
         href={`/vacancies/${stack}/${company.slug}`}
-        className="flex h-full gap-3 rounded-lg border border-gray-200 bg-white p-4 hover:border-indigo-300 hover:shadow-sm"
+        className="flex h-full gap-3 rounded-xl border border-slate-200/80 bg-white shadow-sm p-4 hover:border-brand-300 hover:shadow-sm"
       >
         {company.logo ? (
           // External logo from the job feed; plain img avoids configuring every logo host for next/image.
           // eslint-disable-next-line @next/next/no-img-element
           <img src={company.logo} alt="" className="h-10 w-10 shrink-0 rounded object-contain" />
         ) : (
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-indigo-50 font-semibold text-indigo-700">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-brand-50 font-semibold text-brand-600">
             {company.name.charAt(0).toUpperCase()}
           </span>
         )}

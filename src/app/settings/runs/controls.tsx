@@ -10,7 +10,7 @@ import {
   type ActionState,
 } from "./actions";
 
-const primary = "rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60";
+const primary = "rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:opacity-60";
 const secondary = "rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-gray-50 disabled:opacity-60";
 const input = "w-24 rounded-md border border-gray-300 px-2 py-1 text-sm";
 

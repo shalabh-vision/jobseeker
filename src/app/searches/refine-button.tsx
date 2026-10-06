@@ -10,7 +10,7 @@ export function RefineButton({ stale }: { stale: boolean }) {
       <button
         type="submit"
         disabled={pending}
-        className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-wait disabled:opacity-60"
+        className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:cursor-wait disabled:opacity-60"
       >
         {pending ? "Refining…" : stale ? "Refine queries now" : "Refine again"}
       </button>

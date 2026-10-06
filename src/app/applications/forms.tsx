@@ -4,7 +4,7 @@ import { useActionState } from "react";
 import { addContactAction, addEventAction, scheduleInterviewAction, type ActionState } from "./actions";
 
 const input = "w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm";
-const primary = "rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60";
+const primary = "rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:opacity-60";
 
 function Result({ state, pending }: { state: ActionState; pending: boolean }) {
   if (pending) return null;

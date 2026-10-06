@@ -39,12 +39,12 @@ function CompanyCard({ rank, company }: { rank: number; company: TopCompany }) {
   const d = best.details;
   const facts = d.company;
   return (
-    <li className="rounded-lg border border-gray-200 bg-white p-4">
+    <li className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
       <div className="flex gap-4">
         <div className="flex w-12 shrink-0 flex-col items-center gap-1">
           <span className="text-xs text-gray-400">#{rank}</span>
           <span
-            className="rounded-md bg-indigo-600 px-2 py-1 text-lg font-semibold text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-accent-400 to-accent-600 text-lg font-bold text-white shadow-md ring-4 ring-accent-100"
             title="Overall: landing chance and job quality"
           >
             {company.score}
@@ -75,7 +75,7 @@ function CompanyCard({ rank, company }: { rank: number; company: TopCompany }) {
             </p>
           )}
           <div>
-            <Link href={`/jobs/${best.Id}`} target="_blank" className="font-medium text-indigo-700 hover:underline">
+            <Link href={`/jobs/${best.Id}`} target="_blank" className="font-medium text-brand-600 hover:underline">
               {best.Title} <span className="text-xs text-gray-400">↗</span>
             </Link>
             <p className="text-sm text-gray-700">
@@ -84,8 +84,8 @@ function CompanyCard({ rank, company }: { rank: number; company: TopCompany }) {
             </p>
           </div>
           <div className="flex flex-wrap gap-1.5 text-xs">
-            <span className={`${pill} bg-indigo-50 text-indigo-800`}>Landing chance {best.LandingChance}%</span>
-            <span className={`${pill} bg-indigo-50 text-indigo-800`}>Job quality {best.QualityScore}</span>
+            <span className={`${pill} bg-brand-50 text-brand-800`}>Landing chance {best.LandingChance}%</span>
+            <span className={`${pill} bg-brand-50 text-brand-800`}>Job quality {best.QualityScore}</span>
             <span className={`${pill} bg-gray-100`}>Fit {best.FitScore}</span>
             <span className={`${pill} ${d.payStated ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-500"}`}>
               {d.payStated
@@ -128,7 +128,7 @@ function CompanyCard({ rank, company }: { rank: number; company: TopCompany }) {
               {others.map((o, i) => (
                 <span key={o.Id}>
                   {i > 0 && ", "}
-                  <Link href={`/jobs/${o.Id}`} target="_blank" className="text-indigo-700 hover:underline">
+                  <Link href={`/jobs/${o.Id}`} target="_blank" className="text-brand-600 hover:underline">
                     {o.Title}
                   </Link>{" "}
                   ({o.score})
@@ -187,7 +187,7 @@ export default async function TopPicksPage() {
         </ul>
       </HowItWorks>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white shadow-sm px-4 py-3 text-sm">
         <div className="text-gray-700">
           {running ? (
             <b>Fetch running now…</b>

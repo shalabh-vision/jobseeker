@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import { askQuestionAction, generateKitAction, markAppliedAction, saveKitAction, type ActionState } from "./actions";
 
-const primary = "rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:cursor-wait disabled:opacity-60";
+const primary = "rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:cursor-wait disabled:opacity-60";
 const input = "w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm";
 
 function Result({ state, pending, busyText }: { state: ActionState; pending: boolean; busyText?: string }) {

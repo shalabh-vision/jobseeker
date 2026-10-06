@@ -9,7 +9,7 @@ export function RefreshTopPicks({ running, queries }: { running: boolean; querie
     <form action={run} className="space-y-1">
       <div className="flex flex-wrap items-center gap-3">
         <button
-          className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60"
+          className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600 disabled:opacity-60"
           disabled={pending || running}
         >
           {running ? "Fetch running…" : pending ? "Starting…" : "Search all India now"}

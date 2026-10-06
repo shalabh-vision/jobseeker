@@ -62,7 +62,7 @@ export function JobDecisionButtons({ job }: { job: Pick<JobListItem, "Id" | "Sta
 export function JobCard({ job }: { job: JobListItem }) {
   const redFlags = parseList(job.RedFlagsJson);
   return (
-    <li className="rounded-lg border border-gray-200 bg-white p-4">
+    <li className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
       <div className="flex gap-4">
         <div className="pt-0.5">
           <ScoreBadge score={job.FitScore} />
@@ -71,7 +71,7 @@ export function JobCard({ job }: { job: JobListItem }) {
           <div className="flex flex-wrap items-start justify-between gap-2">
             <div>
               {/* New tab keeps your place in the list while you read the full posting. */}
-              <Link href={`/jobs/${job.Id}`} target="_blank" className="font-medium text-indigo-700 hover:underline">
+              <Link href={`/jobs/${job.Id}`} target="_blank" className="font-medium text-brand-600 hover:underline">
                 {job.Title} <span className="text-xs text-gray-400">↗</span>
               </Link>
               <p className="text-sm text-gray-700">
@@ -116,7 +116,7 @@ export function JobCard({ job }: { job: JobListItem }) {
                   Applied on {formatDate(job.AppliedOn)} ({job.ApplicationStatus})
                 </Link>
               ) : (
-                <Link href={`/jobs/${job.Id}/apply`} className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">
+                <Link href={`/jobs/${job.Id}/apply`} className="rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600">
                   Apply →
                 </Link>
               )}

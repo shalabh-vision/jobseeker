@@ -30,7 +30,7 @@ export const metadata: Metadata = { title: "Searches" };
 
 const input = "w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm";
 const smallButton = "rounded-md border border-gray-300 bg-white px-2.5 py-1 text-xs font-medium hover:bg-gray-50";
-const primaryButton = "rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700";
+const primaryButton = "rounded-md bg-accent-500 shadow-sm px-3 py-1.5 text-sm font-medium text-white hover:bg-accent-600";
 
 function Badge({ children, tone }: { children: React.ReactNode; tone: string }) {
   return <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${tone}`}>{children}</span>;
@@ -136,7 +136,7 @@ function SavedSearchRow({ search, locations }: { search: SavedSearch; locations:
         </div>
       </div>
       <details className="mt-2">
-        <summary className="cursor-pointer text-xs text-indigo-700">Edit</summary>
+        <summary className="cursor-pointer text-xs text-brand-600">Edit</summary>
         <div className="mt-2">
           <SavedSearchForm action={updateSavedSearchAction} locations={locations} search={search} submitLabel="Save changes" />
         </div>
@@ -200,7 +200,7 @@ function QueryRow({ query, roleById, locations }: { query: SearchQuery; roleById
           {query.SavedSearchIds.length > 0 && <> · for: {query.SavedSearchIds.map((id) => roleById.get(id) ?? `#${id}`).join(", ")}</>}
         </div>
         <details className="mt-1">
-          <summary className="cursor-pointer text-xs text-indigo-700">Edit</summary>
+          <summary className="cursor-pointer text-xs text-brand-600">Edit</summary>
           <div className="mt-2">
             <QueryForm action={updateQueryAction} locations={locations} query={query} submitLabel="Save" />
           </div>
@@ -251,7 +251,7 @@ export default async function SearchesPage() {
         </p>
       </div>
 
-      <section className="rounded-lg border border-gray-200 bg-white p-5">
+      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Saved searches</h2>
           <form action={importRolesAction}>
@@ -268,14 +268,14 @@ export default async function SearchesPage() {
           </ul>
         )}
         <details className="mt-4 rounded-md border border-dashed border-gray-300 p-3">
-          <summary className="cursor-pointer text-sm font-medium text-indigo-700">Add a saved search</summary>
+          <summary className="cursor-pointer text-sm font-medium text-brand-600">Add a saved search</summary>
           <div className="mt-3">
             <SavedSearchForm action={addSavedSearchAction} locations={locations} submitLabel="Add saved search" />
           </div>
         </details>
       </section>
 
-      <section className="rounded-lg border border-gray-200 bg-white p-5">
+      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Refined queries</h2>
         <div className="mb-4 space-y-2">
           <p className="text-sm text-gray-700">
@@ -320,7 +320,7 @@ export default async function SearchesPage() {
         )}
 
         <details className="mt-4 rounded-md border border-dashed border-gray-300 p-3">
-          <summary className="cursor-pointer text-sm font-medium text-indigo-700">Add your own query</summary>
+          <summary className="cursor-pointer text-sm font-medium text-brand-600">Add your own query</summary>
           <div className="mt-3">
             <QueryForm action={addQueryAction} locations={queryLocations} submitLabel="Add query" />
           </div>

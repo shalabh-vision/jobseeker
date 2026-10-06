@@ -20,7 +20,7 @@ const STATUS_TONE: Record<FetchRun["Status"], string> = {
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5">
+    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -160,7 +160,7 @@ export default async function RunsPage() {
                 {r.ErrorText && <p className="mt-1 whitespace-pre-wrap text-sm text-red-700">{r.ErrorText}</p>}
                 {r.LogText && (
                   <details className="mt-1" open={r.Status === "running"}>
-                    <summary className="cursor-pointer text-xs text-indigo-700">Log</summary>
+                    <summary className="cursor-pointer text-xs text-brand-600">Log</summary>
                     <pre className="mt-1 max-h-80 overflow-auto whitespace-pre-wrap rounded bg-gray-50 p-2 text-xs text-gray-700">{r.LogText}</pre>
                   </details>
                 )}
