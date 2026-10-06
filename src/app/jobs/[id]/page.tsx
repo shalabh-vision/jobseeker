@@ -16,7 +16,7 @@ const STATUS_LABEL = { new: "Waiting for review", approved: "Approved and saved"
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+    <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
       <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -43,7 +43,7 @@ export default async function JobPage({ params }: PageProps<"/jobs/[id]">) {
         ← Back
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
         <div className="flex gap-4">
           <ScoreBadge score={job.FitScore} />
           <div>

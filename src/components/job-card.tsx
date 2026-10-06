@@ -62,7 +62,7 @@ export function JobDecisionButtons({ job }: { job: Pick<JobListItem, "Id" | "Sta
 export function JobCard({ job }: { job: JobListItem }) {
   const redFlags = parseList(job.RedFlagsJson);
   return (
-    <li className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
+    <li className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-4">
       <div className="flex gap-4">
         <div className="pt-0.5">
           <ScoreBadge score={job.FitScore} />

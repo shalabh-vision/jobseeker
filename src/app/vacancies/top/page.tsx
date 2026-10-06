@@ -39,7 +39,7 @@ function CompanyCard({ rank, company }: { rank: number; company: TopCompany }) {
   const d = best.details;
   const facts = d.company;
   return (
-    <li className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
+    <li className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-4">
       <div className="flex gap-4">
         <div className="flex w-12 shrink-0 flex-col items-center gap-1">
           <span className="text-xs text-gray-400">#{rank}</span>
@@ -187,7 +187,7 @@ export default async function TopPicksPage() {
         </ul>
       </HowItWorks>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200/80 bg-white shadow-sm px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-brand-200/70 bg-white shadow-sm px-4 py-3 text-sm">
         <div className="text-gray-700">
           {running ? (
             <b>Fetch running now…</b>

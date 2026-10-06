@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "How it works" };
 
 function Step({ n, title, href, children }: { n: number; title: string; href?: string; children: React.ReactNode }) {
   return (
-    <li className="flex gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+    <li className="flex gap-4 rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">{n}</span>
       <div className="space-y-2 text-sm text-gray-700">
         <h2 className="text-base font-semibold text-gray-900">
@@ -95,7 +95,7 @@ export default function HelpPage() {
         </Step>
       </ol>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5 text-sm text-gray-700">
+      <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5 text-sm text-gray-700">
         <h2 className="mb-2 text-base font-semibold text-gray-900">When something looks wrong</h2>
         <ul className="ml-5 list-disc space-y-1">
           <li><b>No new jobs</b>: open Fetch runs. A red &ldquo;failed&rdquo; run shows the error; common causes are an expired API key or the monthly request limit.</li>

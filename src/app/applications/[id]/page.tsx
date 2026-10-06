@@ -34,7 +34,7 @@ const OUTCOME_TONE: Record<Interview["Outcome"], string> = {
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+    <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -57,7 +57,7 @@ export default async function ApplicationPage({ params }: PageProps<"/applicatio
         ← Applications
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
         <div>
           <h1 className="text-xl font-semibold">{app.Title}</h1>
           <p className="text-gray-700">

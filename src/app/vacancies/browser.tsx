@@ -15,7 +15,7 @@ function CompanyCard({ stack, company }: { stack: string; company: VacancyCompan
     <li>
       <Link
         href={`/vacancies/${stack}/${company.slug}`}
-        className="flex h-full gap-3 rounded-xl border border-slate-200/80 bg-white shadow-sm p-4 hover:border-brand-300 hover:shadow-sm"
+        className="flex h-full gap-3 rounded-xl border border-brand-200/70 bg-white shadow-sm p-4 hover:border-brand-300 hover:shadow-md transition-shadow"
       >
         {company.logo ? (
           // External logo from the job feed; plain img avoids configuring every logo host for next/image.

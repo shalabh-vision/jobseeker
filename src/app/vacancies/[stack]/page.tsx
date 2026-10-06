@@ -75,7 +75,7 @@ export default async function VacanciesPage({ params }: PageProps<"/vacancies/[s
         </ul>
       </HowItWorks>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white shadow-sm px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-brand-200/70 bg-white shadow-sm px-4 py-3 text-sm">
         <span className="text-gray-700">
           {running ? (
             <b>Fetch running now…</b>
@@ -96,7 +96,7 @@ export default async function VacanciesPage({ params }: PageProps<"/vacancies/[s
       <VacancyBrowser stack={stack.slug} sections={sections} />
 
       {pickable.length > 0 && (
-        <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-4">
+        <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-4">
           <h2 className="mb-1 font-semibold text-gray-900">Search other cities</h2>
           <p className="mb-3 text-sm text-gray-600">
             Not part of the weekly fetch. Tick the cities to search now; their top recruiters appear above.

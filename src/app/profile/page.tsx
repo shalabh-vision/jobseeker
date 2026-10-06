@@ -16,7 +16,7 @@ const fitStyles: Record<ProfileAnalysis["suitableRoles"][number]["fit"], string>
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+    <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
       <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
       {children}
     </section>
@@ -79,7 +79,7 @@ export default async function ProfilePage() {
 
       {a && (
         <>
-          <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+          <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
             <h2 className="text-xl font-semibold">{a.candidateName}</h2>
             <p className="text-gray-700">{a.headline}</p>
             <p className="mt-2 text-sm text-gray-600">
@@ -135,7 +135,7 @@ export default async function ProfilePage() {
       )}
 
       {profile && (
-        <details className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+        <details className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
           <summary className="cursor-pointer text-sm font-medium text-gray-700">Text extracted from your resume</summary>
           <pre className="mt-3 whitespace-pre-wrap font-sans text-sm text-gray-700">{profile.ResumeText}</pre>
         </details>

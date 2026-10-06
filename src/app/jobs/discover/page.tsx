@@ -71,7 +71,7 @@ export default async function DiscoverPage({ searchParams }: PageProps<"/jobs/di
         </p>
       </HowItWorks>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white shadow-sm px-4 py-3 text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-brand-200/70 bg-white shadow-sm px-4 py-3 text-sm">
         <span className="text-gray-700">
           {lastRun ? (
             <>

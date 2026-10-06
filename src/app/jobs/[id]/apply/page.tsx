@@ -19,7 +19,7 @@ const textarea = "w-full rounded-md border border-gray-300 px-3 py-2 text-sm lea
 
 function Card({ title, actions, children }: { title: string; actions?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+    <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">{title}</h2>
         {actions && <div className="flex gap-2">{actions}</div>}
@@ -63,7 +63,7 @@ export default async function ApplyPage({ params }: PageProps<"/jobs/[id]/apply"
         ← Saved jobs
       </Link>
 
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4 rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
         <div className="flex gap-4">
           <ScoreBadge score={job.FitScore} />
           <div>

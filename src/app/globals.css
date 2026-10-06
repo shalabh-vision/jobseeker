@@ -29,6 +29,13 @@
   --color-accent-700: #b4430f;
   --color-accent-800: #8f3713;
   --color-accent-900: #742f13;
+
+  /* Borders were too faint on the blue-white background (user, 2026-10-06): cooler, slightly darker greys, and
+     navy-tinted layered shadows so cards stand off the page. */
+  --color-gray-200: #d9e0eb;
+  --color-gray-300: #c3cddc;
+  --shadow-sm: 0 1px 2px 0 rgb(16 34 74 / 0.07), 0 3px 10px -2px rgb(16 34 74 / 0.1);
+  --shadow-md: 0 2px 4px -1px rgb(16 34 74 / 0.08), 0 8px 20px -4px rgb(16 34 74 / 0.16);
 }
 
 @layer base {

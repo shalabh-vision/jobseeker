@@ -251,7 +251,7 @@ export default async function SearchesPage() {
         </p>
       </div>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Saved searches</h2>
           <form action={importRolesAction}>
@@ -275,7 +275,7 @@ export default async function SearchesPage() {
         </details>
       </section>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white shadow-sm p-5">
+      <section className="rounded-xl border border-brand-200/70 bg-white shadow-sm p-5">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-gray-500">Refined queries</h2>
         <div className="mb-4 space-y-2">
           <p className="text-sm text-gray-700">
