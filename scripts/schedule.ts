@@ -6,7 +6,7 @@ async function main() {
   const [command, time = "09:30"] = process.argv.slice(2);
   if (command === "install") {
     await installSchedule(time);
-    console.log(`Automatic fetch scheduled daily at ${time} (runs when 3 days have passed since the last fetch).`);
+    console.log(`Automatic fetch scheduled daily at ${time} (runs when the fetch interval, 7 days by default, has passed since the last fetch).`);
   } else if (command === "remove") {
     await removeSchedule();
     console.log("Automatic fetch removed.");

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-// The app opens on the guide to how everything works.
+// The app opens on the saved searches.
 export default function Home() {
-  redirect("/help");
+  redirect("/searches");
 }

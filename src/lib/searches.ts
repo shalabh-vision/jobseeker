@@ -3,6 +3,7 @@ import { execute, fixUntypedNumbers, getPool, query, sql } from "./db";
 import { generateJson } from "./gemini";
 import { getProfile } from "./profile";
 import { getNumberSetting } from "./settings";
+import { pickVacancyQueries } from "./vacancies";
 
 /** Region labels that JSearch resolves well, in addition to the individual target cities. */
 const REGIONS = ["Delhi NCR"];
@@ -267,7 +268,9 @@ export async function refineQueries(): Promise<QueryRefinement> {
   if (active.length === 0) throw new Error("Add or activate at least one saved search first");
 
   const manual = previous.filter((q) => q.Origin === "user" && q.Status === "active");
-  const budget = maxRequests - manual.length;
+  // The Tricity vacancy queries run first in every fetch and use part of the same budget.
+  const vacancyQueries = (await pickVacancyQueries()).length;
+  const budget = maxRequests - vacancyQueries - manual.length;
   if (budget < 1) throw new Error("Your own active queries already use the whole request budget");
 
   const locations = [...REGIONS, ...cities.map((c) => c.City), REMOTE];

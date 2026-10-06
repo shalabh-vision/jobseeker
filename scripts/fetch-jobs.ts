@@ -1,12 +1,20 @@
 // Fetches, filters and scores job postings. Run by Windows Task Scheduler every morning and by "Run now".
 //   npm run fetch                -> run now, regardless of when the last run was
-//   ... --trigger=scheduled      -> only run if the fetch interval (default 3 days) has passed
+//   ... --trigger=scheduled      -> only run if the fetch interval (default 7 days) has passed
+//   ... --cities=Bengaluru,Goa   -> only the Vacancies queries for those cities (picked on the Vacancies page)
+//   ... --top-picks              -> only the India-wide queries for TOP 25
 import { appendFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { closePool } from "../src/lib/db";
 import { getNextDueAt, runFetch } from "../src/lib/fetch-run";
 
 const trigger = process.argv.includes("--trigger=scheduled") ? "scheduled" : "manual";
+const cities = process.argv
+  .find((a) => a.startsWith("--cities="))
+  ?.slice("--cities=".length)
+  .split(",")
+  .map((c) => c.trim())
+  .filter(Boolean);
 const logDir = path.join(process.cwd(), "logs");
 mkdirSync(logDir, { recursive: true });
 const logFile = path.join(logDir, "fetch.log");
@@ -27,7 +35,7 @@ async function main() {
       return;
     }
   }
-  const run = await runFetch(trigger, print);
+  const run = await runFetch(trigger, print, { cities, topPicks: process.argv.includes("--top-picks") });
   if (run.Status === "failed") process.exitCode = 1;
 }
 

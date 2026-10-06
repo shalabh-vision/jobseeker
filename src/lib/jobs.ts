@@ -43,18 +43,25 @@ export type JobDetail = JobListItem & {
   LastSeenAt: Date;
 };
 
-const LIST_COLUMNS = `j.Id, j.Title, j.EmployerName, j.City, j.IsRemote, j.PostedAt, j.Publisher, j.SalaryText, j.Status,
+export const LIST_COLUMNS = `j.Id, j.Title, j.EmployerName, j.City, j.IsRemote, j.PostedAt, j.Publisher, j.SalaryText, j.Status,
   j.FitScore, j.FitSummary, j.RedFlagsJson, j.FilterStage, j.FilterReason, j.RejectReason, j.Industry, j.IndustryMatch,
   j.RequiredYears, j.FirstSeenAt, j.DecidedAt,
   CASE WHEN q.Id IS NULL THEN NULL WHEN q.Location = N'Remote' THEN q.QueryText + N' (remote)'
        ELSE q.QueryText + N' in ' + q.Location END AS SearchQueryText,
   a.AppliedOn, a.Status AS ApplicationStatus`;
-const LIST_FROM = `dbo.JobPostings j
+export const LIST_FROM = `dbo.JobPostings j
   LEFT JOIN dbo.SearchQueries q ON q.Id = j.SearchQueryId
   LEFT JOIN dbo.Applications a ON a.JobPostingId = j.Id`;
 
+// Discover reviews your own cities: vacancy and TOP 25 postings from other cities (Bengaluru, Silicon Valley...) stay on the
+// Vacancies tab unless you approve or reject one there.
+const DISCOVER_SCOPE = `((j.VacancyQueryId IS NULL AND j.TopPickQueryId IS NULL) OR j.Status IN (N'approved', N'rejected')
+  OR j.City IN (SELECT City FROM dbo.TargetLocations WHERE IsActive = 1))`;
+
 export async function countJobsByStatus(): Promise<Record<JobTab, number>> {
-  const rows = await query<{ Status: JobTab; N: number }>("SELECT Status, COUNT(*) AS N FROM dbo.JobPostings GROUP BY Status");
+  const rows = await query<{ Status: JobTab; N: number }>(
+    `SELECT j.Status, COUNT(*) AS N FROM dbo.JobPostings j WHERE ${DISCOVER_SCOPE} GROUP BY j.Status`,
+  );
   const counts: Record<JobTab, number> = { new: 0, approved: 0, filtered: 0, rejected: 0 };
   for (const r of rows) counts[r.Status] = r.N;
   return counts;
@@ -66,7 +73,7 @@ export async function listJobs(status: JobTab, filterStage?: string): Promise<Jo
   return query<JobListItem>(
     `SELECT TOP 500 ${LIST_COLUMNS}
        FROM ${LIST_FROM}
-      WHERE j.Status = @status AND (@stage IS NULL OR j.FilterStage = @stage)
+      WHERE j.Status = @status AND (@stage IS NULL OR j.FilterStage = @stage) AND ${DISCOVER_SCOPE}
       ORDER BY ${order}`,
     { status, stage: filterStage ?? null },
   );
@@ -74,7 +81,8 @@ export async function listJobs(status: JobTab, filterStage?: string): Promise<Jo
 
 export async function countFilteredByStage(): Promise<{ FilterStage: string; N: number }[]> {
   return query(
-    "SELECT FilterStage, COUNT(*) AS N FROM dbo.JobPostings WHERE Status = N'filtered' GROUP BY FilterStage ORDER BY N DESC",
+    `SELECT j.FilterStage, COUNT(*) AS N FROM dbo.JobPostings j WHERE j.Status = N'filtered' AND ${DISCOVER_SCOPE}
+      GROUP BY j.FilterStage ORDER BY N DESC`,
   );
 }
 

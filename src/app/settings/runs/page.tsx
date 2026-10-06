@@ -149,7 +149,7 @@ export default async function RunsPage() {
                   <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_TONE[r.Status]}`}>{r.Status}</span>
                   <span className="font-medium">#{r.Id}</span>
                   <span className="text-gray-600">
-                    {formatDateTime(r.StartedAt)} · {r.Trigger}
+                    {formatDateTime(r.StartedAt)} · {r.Trigger}{r.CitiesOnly && <> · vacancies in {r.CitiesOnly} only</>}
                     {r.Refined && " · queries refined"}
                   </span>
                 </div>

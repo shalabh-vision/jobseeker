@@ -73,11 +73,15 @@ export async function removeSchedule(): Promise<void> {
 }
 
 /** Starts a fetch in a separate process so it keeps going even if the page is closed. */
-export function startFetchNow(): void {
+/**
+ * Starts a fetch in its own process. With `cities`, only the Vacancies queries for those cities run; with
+ * `topPicks`, only the India-wide TOP 25 queries.
+ */
+export function startFetchNow(cities?: string[], topPicks = false): void {
   const logDir = path.join(projectDir(), "logs");
   mkdirSync(logDir, { recursive: true });
   const out = openSync(path.join(logDir, "fetch-console.log"), "a");
-  const child = spawn(process.execPath, [tsxCli(), "--env-file=.env", "scripts/fetch-jobs.ts", "--trigger=manual"], {
+  const child = spawn(process.execPath, [tsxCli(), "--env-file=.env", "scripts/fetch-jobs.ts", "--trigger=manual", ...(cities?.length ? [`--cities=${cities.join(",")}`] : []), ...(topPicks ? ["--top-picks"] : [])], {
     cwd: projectDir(),
     detached: true,
     windowsHide: true,

@@ -5,6 +5,8 @@ import type { TargetLocation } from "./searches";
 export type RuleContext = {
   locations: TargetLocation[];
   remote: boolean;
+  /** India-wide search (TOP 25): any city in India counts, not only the listed locations. */
+  anywhereInIndia?: boolean;
   excludeTitleWords: string[];
   blockedEmployers: string[];
   maxAgeDays: number;
@@ -91,6 +93,11 @@ export function applyRules(job: JSearchJob, ctx: RuleContext): RuleOutcome {
   }
 
   const isRemote = !!job.job_is_remote || /\b(remote|work from home|wfh)\b/i.test(`${job.job_title} ${job.job_location ?? ""}`);
+  if (ctx.anywhereInIndia) {
+    const inIndia = (job.job_country ?? "").toUpperCase() === "IN";
+    if (!inIndia && !(ctx.remote && isRemote)) return filtered("location", `Not in India (${job.job_location ?? "location not stated"})`);
+    return { status: "new", city: city ?? job.job_city ?? null, redFlags };
+  }
   if (ctx.remote) {
     // A remote search may still surface an office job in one of the target cities; that is fine too.
     if (!isRemote && !city) return filtered("location", `Not remote and not in your cities (${job.job_location ?? "location not stated"})`);

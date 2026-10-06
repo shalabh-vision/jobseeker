@@ -36,6 +36,8 @@ export async function searchJobs(options: {
   query: string;
   remote: boolean;
   datePosted: string;
+  /** JSearch country code; default India. */
+  country?: string;
 }): Promise<JSearchResult> {
   const key = process.env.RAPIDAPI_KEY;
   if (!key) throw new Error("RAPIDAPI_KEY is missing from .env");
@@ -44,7 +46,7 @@ export async function searchJobs(options: {
     query: options.query,
     page: "1",
     num_pages: "1",
-    country: "in",
+    country: options.country ?? "in",
     date_posted: options.datePosted,
     employment_types: "FULLTIME",
   });

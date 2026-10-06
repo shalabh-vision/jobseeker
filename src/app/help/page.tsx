@@ -32,7 +32,7 @@ export default function HelpPage() {
       </div>
 
       <section className="rounded-lg border border-indigo-200 bg-indigo-50 p-5 text-sm text-indigo-950">
-        <h2 className="mb-2 font-semibold">Your routine (a few minutes every 3 days)</h2>
+        <h2 className="mb-2 font-semibold">Your routine (a few minutes each week)</h2>
         <ol className="ml-5 list-decimal space-y-1">
           <li>Open <Link href="/jobs/discover" className="underline">Discover</Link>: the automatic fetch has already found and scored new jobs.</li>
           <li>Read the top-scored jobs; <b>Approve</b> the ones you want, <b>Reject</b> the rest with a reason.</li>
@@ -58,7 +58,7 @@ export default function HelpPage() {
         </Step>
         <Step n={3} title="Fetch (automatic)" href="/settings/runs">
           <p>
-            A Windows scheduled task checks every morning and searches when 3 days have passed. Each fetch: refine queries
+            A Windows scheduled task checks every morning and searches once a week. Each fetch: .NET vacancy queries for the Tricity (Vacancies tab) → refine queries
             if needed → search JSearch (Google for Jobs: LinkedIn, Naukri, Indeed, company sites and more) → apply rules →
             remove duplicates → score with Gemini. It runs in the background; the website does not need to be open.
           </p>
