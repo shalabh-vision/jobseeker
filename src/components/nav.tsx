@@ -26,6 +26,10 @@ const sections = [
     label: "Profile",
     tabs: [
       { href: "/profile", label: "Profile" },
+      { href: "/career-map", label: "Career map" },
+      { href: "/employers", label: "Employers" },
+      { href: "/swot", label: "SWOT" },
+      { href: "/mantras", label: "Chants" },
       { href: "/help", label: "How it works" },
     ],
   },

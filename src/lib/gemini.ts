@@ -7,8 +7,6 @@ function getClient() {
   if (!client) {
     const apiKey = process.env.GOOGLE_API_KEY;
     if (!apiKey) throw new Error("GOOGLE_API_KEY is missing from .env");
-    // The SDK default (5 attempts, up to 60s apart) turns a busy model into minutes of waiting;
-    // retry once and then move on to the fallback model instead.
     client = new GoogleGenAI({ apiKey, httpOptions: { retryOptions: { attempts: 2, initialDelay: 2 } } });
   }
   return client;
@@ -26,9 +24,6 @@ const retryable = (err: unknown) =>
   (err instanceof ApiError && (err.status === 429 || err.status >= 500)) ||
   (err instanceof Error && (err.name === "TimeoutError" || err.name === "AbortError"));
 
-/**
- * Ask Gemini for JSON matching `schema`. Returns the parsed value and the model that answered.
- */
 export async function generateJson<T>(
   schema: z.ZodType<T>,
   prompt: string,
@@ -47,7 +42,6 @@ export async function generateJson<T>(
           responseMimeType: "application/json",
           responseJsonSchema,
           temperature: 0.2,
-          // Structured extraction does not need long reasoning; high thinking made calls take 30-90 s.
           thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
           abortSignal: AbortSignal.timeout(TIMEOUT_MS),
         },

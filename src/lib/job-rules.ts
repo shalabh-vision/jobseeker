@@ -99,7 +99,6 @@ export function applyRules(job: JSearchJob, ctx: RuleContext): RuleOutcome {
     return { status: "new", city: city ?? job.job_city ?? null, redFlags };
   }
   if (ctx.remote) {
-    // A remote search may still surface an office job in one of the target cities; that is fine too.
     if (!isRemote && !city) return filtered("location", `Not remote and not in your cities (${job.job_location ?? "location not stated"})`);
   } else if (!city) {
     return filtered("location", `Outside your cities (${job.job_location ?? job.job_city ?? "location not stated"})`);

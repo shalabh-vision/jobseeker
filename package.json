@@ -9,6 +9,7 @@
     "lint": "eslint",
     "db:migrate": "tsx --env-file=.env scripts/migrate.ts",
     "fetch": "tsx --env-file=.env scripts/fetch-jobs.ts",
+    "rescore": "tsx --env-file=.env scripts/rescore.ts",
     "schedule:install": "tsx scripts/schedule.ts install",
     "schedule:remove": "tsx scripts/schedule.ts remove",
     "schedule:status": "tsx scripts/schedule.ts status"
