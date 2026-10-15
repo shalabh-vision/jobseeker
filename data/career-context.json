@@ -1,0 +1,16 @@
+{
+  "_note": "The owner's own facts, read by the SWOT as evidence (src/lib/career/swot.ts). Edit freely; press Refresh analysis on the SWOT page afterwards.",
+  "achievements": [
+    "Rising Star Award 2025 at Vision Solutions Pvt. Ltd., Chandigarh (company recognition for 2025)."
+  ],
+  "continuity": "Continuous role at Vision Solutions Pvt. Ltd. since February 2025 (Senior Software Architect / Technical Consultant), delivering for many clients from one employer: a digital banking platform and a NeoBank build, GOS (bakery ordering system), NPace (POS reporting on AWS with MATLAB, MySQL, Docker), Microsoft 365 automation for TSG, Monday Properties and Winston Properties (Power Automate, SharePoint, OneDrive, Excel Office Scripts: folder management, insurance payout reconciliation), Gurudev (WordPress, PHP) and Arctic Today (automation, VPAT accessibility testing).",
+  "scope": [
+    "Analysed and documented a digital banking platform of four .NET 8 backend services (ledger, payments, cards, crypto): architecture guide, system map, API reference, continuity paper.",
+    "Wrote a ten-part NeoBank build plan (accounts and currencies, local rails, stablecoin settlement, cards, FX engine, business controls, platform API, AI operations).",
+    "Designed the NeoBank AI operations layer: six human-approved AI agents, nine build chunks, 34-42 engineer-weeks, LLM gateway, approval queue, audit log and evaluation harness on Azure OpenAI (in progress)."
+  ],
+  "framing": {
+    "teamLeaving": "An earlier event-ticketing and musician-biography app for Latin artists (backend API plus iOS and Android) stalled when the mobile developers were moved to other assignments. He owned and delivered the backend API and the architecture, kept the platform standing, and turned the episode into a personal rule: every project runs with documented ownership and handover discipline, and anyone leaving talks to the team lead first. Present this with confidence and ownership, never as a failure.",
+    "certification": "The Rising Star Award 2025 is recognised, current proof of capability from his employer; present a cloud certificate as an optional extra, not a gap."
+  }
+}

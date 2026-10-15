@@ -6,6 +6,8 @@
 //   - the "To land it" gaps Gemini listed on the rated postings (TOP 25)
 //   - the owner's own context: past projects stalled when team members left (user, 2026-10-15)
 // Every point must cite evidence ids; points citing unknown ids are dropped.
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { z } from "zod";
 import { query } from "../db";
 import { generateJson } from "../gemini";
@@ -79,10 +81,26 @@ Rules:
   certifications held, or market statistics that are not in the evidence.
 - Opportunities and threats are about the market as the evidence shows it (skill demand in AI postings, role demand,
   what postings ask for), not general claims.
-- In "overcome", treat project setbacks caused by team members leaving as circumstantial, never as his failure; show how
-  to present the work he did deliver (architecture, backend, decisions) truthfully, and how to protect future projects
-  (handover discipline, documented ownership). Be practical, not flattering.
+- In "overcome", treat project setbacks caused by team members leaving as circumstantial, never as his failure. Put up a
+  confident front, in the owner's own framing: he owned and delivered the backend and architecture, and turned the
+  episode into a rule he now applies (documented ownership, handover discipline, talk to the lead before leaving).
+- Recognition in the evidence (awards) counts as current proof of capability. When the owner's framing says so, do NOT
+  list a missing certificate as a weakness or in "overcome": mention it once, under threats, only as what postings ask
+  for, offset by the award. A long continuous role with many clients is stability, not short engagements.
+- Be practical, never flattering, and never claim anything the evidence does not state.
 - Address him as "you".`;
+
+type CareerContext = { achievements: string[]; continuity?: string; scope: string[]; framing: { teamLeaving?: string; certification?: string } };
+
+/** The owner's own facts for the SWOT; missing file = none. */
+function readCareerContext(): CareerContext {
+  try {
+    const c = JSON.parse(readFileSync(path.join(process.cwd(), "data", "career-context.json"), "utf8"));
+    return { achievements: c.achievements ?? [], continuity: c.continuity, scope: c.scope ?? [], framing: c.framing ?? {} };
+  } catch {
+    return { achievements: [], scope: [], framing: {} };
+  }
+}
 
 export async function refreshSwot(): Promise<SwotData> {
   const profile = await getProfile();
@@ -136,7 +154,13 @@ export async function refreshSwot(): Promise<SwotData> {
   for (const s of skills.slice(0, 14)) add(`"${s.skill}" appears in ${s.postings} of ${ai.length} AI postings; ${s.has ? "on the resume" : "not on the resume"}.`);
   for (const r of roles) add(`Role "${r.role}": ${r.postings} postings; average fit ${r.avgFit ?? "n/a"}; average landing chance ${r.avgLanding ?? "n/a"}.`);
   for (const [g, n] of gapCounts) add(`Gap named on ${n} rated posting${n === 1 ? "" : "s"}: ${g}`);
-  add("Owner's context: past projects stalled when other developers were moved to other assignments and left; he was left with incomplete work. This was circumstantial (team commitment), not his ability.");
+  // The owner's own facts (data/career-context.json): award, continuity at Vision Solutions, scope, how to frame setbacks.
+  const ctx = readCareerContext();
+  for (const a of ctx.achievements) add(`Achievement: ${a}`);
+  if (ctx.continuity) add(`Current employment: ${ctx.continuity}`);
+  for (const s of ctx.scope) add(`Delivered scope: ${s}`);
+  if (ctx.framing.teamLeaving) add(`Owner's context and framing for the stalled project: ${ctx.framing.teamLeaving}`);
+  if (ctx.framing.certification) add(`Owner's framing for certification: ${ctx.framing.certification}`);
 
   const ids = new Set(evidence.map((e) => e.id));
   const response = await generateJson(Insight, `EVIDENCE:\n${evidence.map((e) => `${e.id}: ${e.text}`).join("\n")}`, SYSTEM);
@@ -155,6 +179,22 @@ export async function refreshSwot(): Promise<SwotData> {
     roles,
     aiPostings: ai.length,
   };
-  await saveInsight("swot", data, response.model);
-  return data;
+  const final = applyOwnerFraming(data, ctx);
+  await saveInsight("swot", final, response.model);
+  return final;
+}
+
+/**
+ * The owner's framing, enforced in code (the model did not follow it reliably, 2026-10-15): with a certification
+ * framing (Rising Star Award), a missing certificate is not a weakness or a point to overcome; it stays under threats
+ * only, as what postings ask for.
+ */
+export function applyOwnerFraming(d: SwotData, ctx: CareerContext = readCareerContext()): SwotData {
+  if (!ctx.framing.certification) return d;
+  const aboutCert = (s: string) => /certif/i.test(s);
+  return {
+    ...d,
+    weaknesses: d.weaknesses.filter((w) => !aboutCert(w.point)),
+    overcome: d.overcome.filter((o) => !aboutCert(o.concern)),
+  };
 }
